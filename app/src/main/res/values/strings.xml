@@ -1,0 +1,51 @@
+<resources>
+    <!-- NETWORK -->
+    <string name="network.api_param">api_key</string>
+    <string name="network.api_key">PUT YOUR API KEY HERE</string>
+
+
+
+
+    <string name="app_name">PouparMovies</string>
+
+    <string name="main.no_network">No network detected!\nThis application requires network connection</string>
+    <string name="main.no_network_close">Close App</string>
+
+    <!-- Menu Item strings -->
+    <string name="menu.mi_sort_popular">Most Popular</string>
+    <string name="menu.mi_sort_most_voted">Most Voted</string>
+
+    <!-- Main Activity Action Bar Strings -->
+    <string name="main.most_popular_actionbar"> Movies: Most Popular</string>
+    <string name="main.most_voted_actionbar"> Movies: Most Voted</string>
+
+    <!-- Detail Activity release date, synopsis text, and rating Strings -->
+    <string name="detail.released">Released: %1$s</string>
+    <string name="detail.synopsis">Synopsis</string>
+    <string name="detail.rating_text">(%1$.1f / 10.0)</string>
+
+    <!-- Image Descriptions -->
+    <string name="row.thumb_description">Movie Thumbnail</string>
+    <string name="detail.img_description">Movie Image</string>
+
+    <string name="network.url_popular">https://api.themoviedb.org/3/movie/popular</string>
+    <string name="network.url_top_rated">https://api.themoviedb.org/3/movie/top_rated</string>
+    <string name="network.url_images">http://image.tmdb.org/t/p/</string>
+
+    <!-- api image widths -->
+    <string name="network.width.92">w92</string>
+    <string name="network.width.154">w154</string>
+    <string name="network.width.185">w185</string>
+    <string name="network.width.342">w342</string>
+    <string name="network.width.500">w500</string>
+    <string name="network.width.780">w780</string>
+    <string name="network.width.original">original</string>
+
+    <!-- Dummy descriptions == tools:text on xml files -->
+    <string name="dummy_synopsis">Foo bla bla\nblabla\nmore blabla</string>
+    <string name="dummy_movie_name">MOVIE NAME</string>
+    <string name="dummy_release_date">Released: 01/01/2018</string>
+    <string name="dummy_rating">3.5</string>
+
+
+</resources>
