@@ -1,14 +1,19 @@
 package eu.anifantakis.pouparmovies;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import eu.anifantakis.pouparmovies.Utils.MoviesCollection;
 
@@ -74,9 +79,29 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         void setImage(String image){
 
             String posterPath = context.getString(R.string.network_url_images) + context.getString(R.string.network_width_342);
-            Picasso.with(context)
+
+
+            Picasso.get()
                     .load(posterPath+image)
-                    .into(mMovieThumb);
+                    .into(mMovieThumb, new Callback(){
+                        @Override
+                        public void onSuccess() {
+
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+
+                        }
+                    });
+
+
+            /*
+
+            Glide.with(context)
+                    .load(posterPath+image)
+                    .override(500, 500) //1
+                    .into(mMovieThumb);*/
         }
 
         /**

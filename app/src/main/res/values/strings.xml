@@ -1,12 +1,14 @@
 <resources>
     <!-- NETWORK -->
     <string name="network.api_param">api_key</string>
-    <string name="network.api_key">PUT YOUR API KEY HERE</string>
+    <string name="network.api_key">API KEY HERE</string>
 
 
 
 
     <string name="app_name">PouparMovies</string>
+
+    <string name="main.no_api_key">Please obtain an API_KEY at themoviedb.org and place it at the strings.xml - Then rebuild the app!</string>
 
     <string name="main.no_network">No network detected!\nThis application requires network connection</string>
     <string name="main.no_network_close">Close App</string>

@@ -1,10 +1,18 @@
 package eu.anifantakis.pouparmovies;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -15,14 +23,16 @@ import eu.anifantakis.pouparmovies.Utils.MoviesCollection;
 public class DetailActivity extends AppCompatActivity {
 
     private MoviesCollection.Movie movie = null;
-    private ImageView ivMovieHoriz;
+    private ImageView ivMovieHoriz_thumb, ivMovieHoriz_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        ivMovieHoriz = (ImageView) findViewById(R.id.detail_iv_img_horiz);
+        ivMovieHoriz_thumb = (ImageView) findViewById(R.id.detail_iv_img_horiz_thumb);
+        ivMovieHoriz_img = (ImageView) findViewById(R.id.detail_iv_img_horiz_img);
+
         TextView title = (TextView) findViewById(R.id.detail_tv_title);
         RatingBar ratingBar = (RatingBar) findViewById(R.id.detail_rb_movie_rating);
         TextView tvRating = (TextView) findViewById(R.id.detail_tv_movie_rating);
@@ -77,11 +87,38 @@ public class DetailActivity extends AppCompatActivity {
      * the Picasso library on the ImageView
      * @param image The image id
      */
-    void setImage(String image){
+    void setImage(final String image){
         // http://image.tmdb.org/t/p/w780/lkOZcsXcOLZYeJ2YxJd3vSldvU4.jpg
-        String posterPath = getString(R.string.network_url_images) + getString(R.string.network_width_780);
-        Picasso.with(this)
-                .load(posterPath+image)
-                .into(ivMovieHoriz);
+        final String posterPath = getString(R.string.network_url_images) + getString(R.string.network_width_780);
+        String thumbPath  = getString(R.string.network_url_images) + getString(R.string.network_width_342);
+
+        Picasso.get()
+                .load(thumbPath+image)
+                .into(ivMovieHoriz_thumb, new Callback(){
+                    @Override
+                    public void onSuccess() {
+                        Log.d("ItemSelect", "SUCCESS_THUMB");
+
+                        Picasso.get()
+                                .load(posterPath+image)
+                                .into(ivMovieHoriz_img, new Callback(){
+                                    @Override
+                                    public void onSuccess() {
+                                        Log.d("ItemSelect", "SUCCESS_IMG");
+                                        ivMovieHoriz_thumb.setVisibility(View.INVISIBLE);
+                                    }
+
+                                    @Override
+                                    public void onError(Exception e) {
+                                        Log.d("ItemSelect", "FAIL_IMG");
+                                    }
+                                });
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Log.d("ItemSelect", "FAIL_THUMB");
+                    }
+                });
     }
 }
